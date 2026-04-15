@@ -1,4 +1,3 @@
-<!doctype html>
 <html lang="ms" class="h-full">
  <head>
   <meta charset="UTF-8">
@@ -6,13 +5,14 @@
   <script src="https://cdn.tailwindcss.com/3.4.17"></script>
   <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
   <script src="/_sdk/element_sdk.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&amp;family=DM+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <!-- Tukar font kepada Fredoka dan Nunito untuk mood mesra keluarga -->
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
   html, body { height: 100%; margin: 0; }
   * { box-sizing: border-box; }
-  .font-display { font-family: 'Playfair Display', Georgia, serif; }
-  .font-body { font-family: 'DM Sans', sans-serif; }
-
+  .font-display { font-family: 'Fredoka', sans-serif; }
+  .font-body { font-family: 'Nunito', sans-serif; }
+ 
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(30px); }
     to { opacity: 1; transform: translateY(0); }
@@ -26,14 +26,14 @@
     100% { background-position: 200% center; }
   }
   @keyframes pulse-glow {
-    0%, 100% { box-shadow: 0 0 20px rgba(234,179,8,0.3); }
-    50% { box-shadow: 0 0 40px rgba(234,179,8,0.6); }
+    0%, 100% { box-shadow: 0 0 20px rgba(250, 204, 21, 0.4); }
+    50% { box-shadow: 0 0 40px rgba(250, 204, 21, 0.8); }
   }
   @keyframes float {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-8px); }
   }
-
+ 
   .anim-fade-up { animation: fadeUp 0.7s ease forwards; opacity: 0; }
   .anim-scale { animation: scaleIn 0.6s ease forwards; opacity: 0; }
   .anim-delay-1 { animation-delay: 0.1s; }
@@ -42,52 +42,57 @@
   .anim-delay-4 { animation-delay: 0.4s; }
   .anim-delay-5 { animation-delay: 0.5s; }
   .anim-delay-6 { animation-delay: 0.6s; }
-
+ 
+  /* Shimmer ceria (Sky blue ke Sunny yellow) */
   .shimmer-text {
-    background: linear-gradient(90deg, #fbbf24, #fff, #fbbf24);
+    background: linear-gradient(90deg, #0ea5e9, #facc15, #0ea5e9);
     background-size: 200% auto;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     animation: shimmer 3s linear infinite;
   }
-
+ 
   .btn-glow { animation: pulse-glow 2s ease-in-out infinite; }
   .card-float:hover { animation: float 2s ease-in-out infinite; }
-
+ 
+  /* Kad Level - Soft shadow dan rounded */
   .level-card {
-    background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255,255,255,0.08);
+    background: #ffffff;
+    border: 2px solid transparent;
+    border-radius: 24px;
+    box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.05);
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
   .level-card:hover {
-    border-color: rgba(234,179,8,0.4);
     transform: translateY(-6px);
-    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    box-shadow: 0 20px 40px -5px rgba(0, 0, 0, 0.1);
   }
-
-  .bg-noise {
-    position: relative;
-  }
+  .level-card-1:hover { border-color: #34d399; }
+  .level-card-2:hover { border-color: #f472b6; }
+  .level-card-3:hover { border-color: #60a5fa; }
+  .level-card-4:hover { border-color: #fb923c; }
+ 
+  .bg-noise { position: relative; }
   .bg-noise::before {
     content: '';
     position: absolute;
     inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.02'/%3E%3C/svg%3E");
     pointer-events: none;
     z-index: 0;
   }
-
+ 
   .scroll-reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
   .scroll-reveal.visible { opacity: 1; transform: translateY(0); }
-
+ 
   .testimonial-card {
-    background: linear-gradient(135deg, rgba(234,179,8,0.08), rgba(255,255,255,0.03));
-    border: 1px solid rgba(234,179,8,0.15);
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
   }
-
+ 
   .counter { font-variant-numeric: tabular-nums; }
-
+ 
   .ribbon {
     position: absolute;
     top: -5px;
@@ -101,7 +106,7 @@
     display: block;
     width: 120px;
     padding: 6px 0;
-    background: #dc2626;
+    background: #f43f5e;
     color: #fff;
     font-size: 11px;
     font-weight: 700;
@@ -111,6 +116,7 @@
     top: 18px;
     right: -30px;
     letter-spacing: 1px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   }
 </style>
   <script>
@@ -118,8 +124,8 @@ tailwind.config = {
   theme: {
     extend: {
       colors: {
-        dark: { 900: '#0a0a0f', 800: '#12121a', 700: '#1a1a25' },
-        gold: { 400: '#fbbf24', 500: '#eab308', 600: '#ca8a04' }
+        dark: { 900: '#f8fafc', 800: '#f1f5f9', 700: '#e2e8f0' }, /* Ditukar kepada cerah */
+        gold: { 400: '#facc15', 500: '#eab308', 600: '#ca8a04' } /* Kekal kuning terang */
       }
     }
   }
@@ -129,553 +135,475 @@ tailwind.config = {
   <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
  </head>
  <body class="h-full">
-  <div id="app" class="w-full h-full overflow-auto bg-dark-900 text-white font-body">
+  <div id="app" class="w-full h-full overflow-auto bg-slate-50 text-slate-800 font-body">
     <!-- HERO -->
-   <section class="relative w-full bg-noise" style="background: linear-gradient(180deg, #0a0a0f 0%, #1a1025 50%, #0a0a0f 100%);">
+   <section class="relative w-full bg-noise" style="background: linear-gradient(180deg, #e0f2fe 0%, #f0f9ff 50%, #ffffff 100%);">
     <div class="relative z-10 max-w-5xl mx-auto px-5 py-16 md:py-24 text-center">
       <!-- Badge -->
-     <div class="anim-fade-up inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gold-500/30 bg-gold-500/10 mb-8"><span class="w-2 h-2 rounded-full bg-gold-400 animate-pulse"></span> <span class="text-gold-400 text-sm font-semibold tracking-wide">PLATFORM TRANSFORMASI HIDUP #1 MALAYSIA</span>
+     <div class="anim-fade-up inline-flex items-center gap-2 px-4 py-2 rounded-full border border-sky-300 bg-sky-100 mb-8"><span class="w-2 h-2 rounded-full bg-sky-500 animate-pulse"></span> <span class="text-sky-700 text-sm font-bold tracking-wide">PLATFORM TRANSFORMASI HIDUP #1 MALAYSIA</span>
      </div>
-     <h1 id="heroTitle" class="anim-fade-up anim-delay-1 font-display text-4xl md:text-6xl lg:text-7xl font-900 leading-tight mb-6">Kuasai <span class="shimmer-text">Kewangan, Keluarga</span> &amp; Legasi Anda Dalam Satu Platform</h1>
-     <p id="heroSubtitle" class="anim-fade-up anim-delay-2 text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-10 leading-relaxed">26 calculator &amp; ujian interaktif. 44 ebook eksklusif. 4 level transformasi. Semua dalam genggaman anda — dari hanya <strong class="text-gold-400">RM40</strong>.</p>
+     <h1 id="heroTitle" class="anim-fade-up anim-delay-1 font-display text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6 text-slate-800">Kuasai <span class="shimmer-text">Kewangan, Keluarga</span> &amp; Legasi Anda Dalam Satu Platform</h1>
+     <p id="heroSubtitle" class="anim-fade-up anim-delay-2 text-lg md:text-xl text-slate-600 max-w-2xl mx-auto mb-10 leading-relaxed">26 calculator &amp; ujian interaktif. 44 ebook eksklusif. 4 level transformasi. Semua dalam genggaman anda — dari hanya <strong class="text-sky-600 font-bold">RM40</strong>.</p>
      <!-- Stats -->
      <div class="anim-fade-up anim-delay-3 flex flex-wrap justify-center gap-8 mb-10">
       <div class="text-center">
-       <div class="text-3xl md:text-4xl font-display font-800 text-gold-400 counter" data-target="26">
+       <div class="text-3xl md:text-4xl font-display font-bold text-sky-500 counter" data-target="26">
         0
        </div>
-       <div class="text-xs text-gray-500 mt-1 uppercase tracking-wider">
+       <div class="text-xs text-slate-500 mt-1 font-bold uppercase tracking-wider">
         Calculator &amp; Ujian
        </div>
       </div>
       <div class="text-center">
-       <div class="text-3xl md:text-4xl font-display font-800 text-gold-400 counter" data-target="44">
+       <div class="text-3xl md:text-4xl font-display font-bold text-sky-500 counter" data-target="44">
         0
        </div>
-       <div class="text-xs text-gray-500 mt-1 uppercase tracking-wider">
+       <div class="text-xs text-slate-500 mt-1 font-bold uppercase tracking-wider">
         Ebook Eksklusif
        </div>
       </div>
       <div class="text-center">
-       <div class="text-3xl md:text-4xl font-display font-800 text-gold-400 counter" data-target="4">
+       <div class="text-3xl md:text-4xl font-display font-bold text-sky-500 counter" data-target="4">
         0
        </div>
-       <div class="text-xs text-gray-500 mt-1 uppercase tracking-wider">
+       <div class="text-xs text-slate-500 mt-1 font-bold uppercase tracking-wider">
         Level Transformasi
        </div>
       </div>
      </div>
      <!-- CTA Buttons -->
-     <div class="anim-fade-up anim-delay-4 flex flex-col sm:flex-row gap-4 justify-center"><a id="mainCta" href="#" target="_blank" rel="noopener noreferrer" class="btn-glow inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-gold-500 to-gold-600 text-dark-900 font-bold text-lg rounded-xl hover:from-gold-400 hover:to-gold-500 transition-all"> <i data-lucide="zap" style="width:20px;height:20px;"></i> DAPATKAN BUNDLE PENUH — <span id="bundlePriceHero">RM100</span> </a> <a href="#levels" class="inline-flex items-center justify-center gap-2 px-8 py-4 border border-white/20 text-white font-semibold rounded-xl hover:bg-white/5 transition-all"> <i data-lucide="layers" style="width:20px;height:20px;"></i> Lihat Semua Level </a>
+     <div class="anim-fade-up anim-delay-4 flex flex-col sm:flex-row gap-4 justify-center"><a id="mainCta" href="#" target="_blank" rel="noopener noreferrer" class="btn-glow inline-flex items-center justify-center gap-2 px-8 py-4 bg-yellow-400 text-slate-900 font-bold text-lg rounded-2xl hover:bg-yellow-300 transition-all shadow-lg"> <i data-lucide="zap" style="width:20px;height:20px;"></i> DAPATKAN BUNDLE PENUH — <span id="bundlePriceHero">RM100</span> </a> <a href="#levels" class="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-slate-200 text-slate-700 bg-white font-bold rounded-2xl hover:bg-slate-50 transition-all shadow-sm"> <i data-lucide="layers" style="width:20px;height:20px;"></i> Lihat Semua Level </a>
      </div>
-     <p class="anim-fade-up anim-delay-5 text-sm text-gray-500 mt-6"><i data-lucide="shield-check" style="width:14px;height:14px;display:inline;vertical-align:middle;"></i> Bayaran selamat melalui OnPay · Akses terus selepas bayaran</p>
+     <p class="anim-fade-up anim-delay-5 text-sm text-slate-500 mt-6 font-semibold"><i data-lucide="shield-check" style="width:16px;height:16px;display:inline;vertical-align:middle;color:#10b981;"></i> Bayaran selamat melalui OnPay · Akses terus selepas bayaran</p>
     </div>
    </section>
-
-   <!-- ORIGIN STORY - WE DID THIS FIRST -->
-   <section class="w-full scroll-reveal" style="background: linear-gradient(180deg, #0f0f18 0%, #0a0a0f 100%);">
+ 
+   <!-- ORIGIN STORY -->
+   <section class="w-full scroll-reveal bg-white">
     <div class="max-w-4xl mx-auto px-5 py-16 md:py-24">
      <div class="text-center mb-12">
-      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-blue-500/30 bg-blue-500/10 mb-6"><span class="w-2 h-2 rounded-full bg-blue-400 animate-pulse"></span> <span class="text-blue-400 text-sm font-semibold tracking-wide">PERTAMA DI MALAYSIA</span>
+      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-sky-300 bg-sky-50 mb-6"><span class="w-2 h-2 rounded-full bg-sky-500 animate-pulse"></span> <span class="text-sky-600 text-sm font-bold tracking-wide">PERTAMA DI MALAYSIA</span>
       </div>
-      <h2 class="font-display text-3xl md:text-5xl font-900 mb-6">Kami Cipta Sistem <span class="text-blue-400">Jurnal Keluarga Lengkap</span> Yang Pertama</h2>
-      <p class="text-gray-400 text-lg max-w-3xl mx-auto leading-relaxed">Bukan sekadar kewangan. Bukan sekadar hubungan. Kami reka platform yang menilai SEMUA aspek kehidupan keluarga — dari kewangan, keharmonian, legasi, HINGGA kesiapan akhirat.</p>
+      <h2 class="font-display text-3xl md:text-5xl font-bold mb-6 text-slate-800">Kami Cipta Sistem <span class="text-sky-500">Jurnal Keluarga Lengkap</span> Yang Pertama</h2>
+      <p class="text-slate-600 text-lg max-w-3xl mx-auto leading-relaxed">Bukan sekadar kewangan. Bukan sekadar hubungan. Kami reka platform yang menilai SEMUA aspek kehidupan keluarga — dari kewangan, keharmonian, legasi, HINGGA kesiapan akhirat.</p>
      </div>
      <div class="grid md:grid-cols-2 gap-8 mt-12">
-      <div class="p-8 rounded-2xl border border-white/10 bg-gradient-to-br from-white/5 to-transparent">
-       <h3 class="font-display text-xl font-800 mb-4 text-blue-400">Aspek Dunia</h3>
-       <div class="space-y-3">
+      <div class="p-8 rounded-3xl border border-slate-100 bg-slate-50 shadow-sm">
+       <h3 class="font-display text-xl font-bold mb-4 text-sky-600">Aspek Dunia</h3>
+       <div class="space-y-4">
         <div class="flex items-start gap-3">
-         <div class="w-6 h-6 rounded-full bg-emerald-500/20 flex items-center justify-center flex-shrink-0 mt-0.5"><i data-lucide="wallet" style="width:14px;height:14px;color:#34d399;"></i>
+         <div class="w-8 h-8 rounded-full bg-emerald-100 flex items-center justify-center flex-shrink-0 mt-0.5"><i data-lucide="wallet" style="width:16px;height:16px;color:#059669;"></i>
          </div>
          <div>
-          <div class="font-semibold text-sm">
-           Kewangan Keluarga
-          </div>
-          <div class="text-gray-500 text-xs">
-           Budget, saving, hutang, pelaburan, emergency fund
-          </div>
+          <div class="font-bold text-sm text-slate-800">Kewangan Keluarga</div>
+          <div class="text-slate-500 text-xs mt-1">Budget, saving, hutang, pelaburan, emergency fund</div>
          </div>
         </div>
         <div class="flex items-start gap-3">
-         <div class="w-6 h-6 rounded-full bg-pink-500/20 flex items-center justify-center flex-shrink-0 mt-0.5"><i data-lucide="heart" style="width:14px;height:14px;color:#f472b6;"></i>
+         <div class="w-8 h-8 rounded-full bg-pink-100 flex items-center justify-center flex-shrink-0 mt-0.5"><i data-lucide="heart" style="width:16px;height:16px;color:#db2777;"></i>
          </div>
          <div>
-          <div class="font-semibold text-sm">
-           Keharmonian &amp; Hubungan
-          </div>
-          <div class="text-gray-500 text-xs">
-           Pasangan, anak-anak, keluarga besar, komunikasi
-          </div>
+          <div class="font-bold text-sm text-slate-800">Keharmonian &amp; Hubungan</div>
+          <div class="text-slate-500 text-xs mt-1">Pasangan, anak-anak, keluarga besar, komunikasi</div>
          </div>
         </div>
         <div class="flex items-start gap-3">
-         <div class="w-6 h-6 rounded-full bg-orange-500/20 flex items-center justify-center flex-shrink-0 mt-0.5"><i data-lucide="baby" style="width:14px;height:14px;color:#fb923c;"></i>
+         <div class="w-8 h-8 rounded-full bg-orange-100 flex items-center justify-center flex-shrink-0 mt-0.5"><i data-lucide="baby" style="width:16px;height:16px;color:#ea580c;"></i>
          </div>
          <div>
-          <div class="font-semibold text-sm">
-           Generasi Seterusnya
-          </div>
-          <div class="text-gray-500 text-xs">
-           Pendidikan kewangan anak, nilai-nilai, pembentukan karakter
-          </div>
+          <div class="font-bold text-sm text-slate-800">Generasi Seterusnya</div>
+          <div class="text-slate-500 text-xs mt-1">Pendidikan kewangan anak, nilai-nilai, pembentukan karakter</div>
          </div>
         </div>
        </div>
       </div>
-      <div class="p-8 rounded-2xl border border-white/10 bg-gradient-to-br from-white/5 to-transparent">
-       <h3 class="font-display text-xl font-800 mb-4 text-gold-400">Aspek Akhirat</h3>
-       <div class="space-y-3">
+      <div class="p-8 rounded-3xl border border-slate-100 bg-slate-50 shadow-sm">
+       <h3 class="font-display text-xl font-bold mb-4 text-yellow-500">Aspek Akhirat</h3>
+       <div class="space-y-4">
         <div class="flex items-start gap-3">
-         <div class="w-6 h-6 rounded-full bg-blue-500/20 flex items-center justify-center flex-shrink-0 mt-0.5"><i data-lucide="landmark" style="width:14px;height:14px;color:#60a5fa;"></i>
+         <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0 mt-0.5"><i data-lucide="landmark" style="width:16px;height:16px;color:#2563eb;"></i>
          </div>
          <div>
-          <div class="font-semibold text-sm">
-           Pewarisan &amp; Wasiat
-          </div>
-          <div class="text-gray-500 text-xs">
-           Rancang legasi yang halal, amanah, dan berkah untuk generasi mendatang
-          </div>
+          <div class="font-bold text-sm text-slate-800">Pewarisan &amp; Wasiat</div>
+          <div class="text-slate-500 text-xs mt-1">Rancang legasi yang halal, amanah, dan berkah untuk generasi mendatang</div>
          </div>
         </div>
         <div class="flex items-start gap-3">
-         <div class="w-6 h-6 rounded-full bg-purple-500/20 flex items-center justify-center flex-shrink-0 mt-0.5"><i data-lucide="book-open" style="width:14px;height:14px;color:#d8b4fe;"></i>
+         <div class="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center flex-shrink-0 mt-0.5"><i data-lucide="book-open" style="width:16px;height:16px;color:#9333ea;"></i>
          </div>
          <div>
-          <div class="font-semibold text-sm">
-           Amal Jariyah &amp; Infak
-          </div>
-          <div class="text-gray-500 text-xs">
-           Rancang bagaimana keluarga boleh memberi manfaat selepas kita tiada
-          </div>
+          <div class="font-bold text-sm text-slate-800">Amal Jariyah &amp; Infak</div>
+          <div class="text-slate-500 text-xs mt-1">Rancang bagaimana keluarga boleh memberi manfaat selepas kita tiada</div>
          </div>
         </div>
         <div class="flex items-start gap-3">
-         <div class="w-6 h-6 rounded-full bg-cyan-500/20 flex items-center justify-center flex-shrink-0 mt-0.5"><i data-lucide="shield-check" style="width:14px;height:14px;color:#22d3ee;"></i>
+         <div class="w-8 h-8 rounded-full bg-cyan-100 flex items-center justify-center flex-shrink-0 mt-0.5"><i data-lucide="shield-check" style="width:16px;height:16px;color:#0891b2;"></i>
          </div>
          <div>
-          <div class="font-semibold text-sm">
-           Kesiapan Menghadap Ilahi
-          </div>
-          <div class="text-gray-500 text-xs">
-           Audit hidup menyeluruh — adakah anda sudah bersedia?
-          </div>
+          <div class="font-bold text-sm text-slate-800">Kesiapan Menghadap Ilahi</div>
+          <div class="text-slate-500 text-xs mt-1">Audit hidup menyeluruh — adakah anda sudah bersedia?</div>
          </div>
         </div>
        </div>
       </div>
      </div>
-     <div class="mt-12 p-8 rounded-2xl border-2 border-gold-500/30 bg-gradient-to-r from-gold-500/5 to-transparent text-center">
-      <p class="text-xl font-display font-800 text-gold-400 mb-2">Sistem Jurnal Keluarga Lengkap Pertama Di Malaysia</p>
-      <p class="text-gray-400">Kami tidak membuat aplikasi biasa. Kami memberikan FRAMEWORK TRANSFORMASI yang mengubah keluarga dari "hidup saja" menjadi "hidup dengan TUJUAN dan PERSIAPAN yang sempurna."</p>
+     <div class="mt-12 p-8 rounded-3xl bg-yellow-50 border-2 border-yellow-200 text-center shadow-sm">
+      <p class="text-xl font-display font-bold text-yellow-600 mb-2">Sistem Jurnal Keluarga Lengkap Pertama Di Malaysia</p>
+      <p class="text-slate-600 font-medium">Kami tidak membuat aplikasi biasa. Kami memberikan FRAMEWORK TRANSFORMASI yang mengubah keluarga dari "hidup saja" menjadi "hidup dengan TUJUAN dan PERSIAPAN yang sempurna."</p>
      </div>
     </div>
    </section>
-
+ 
    <!-- PROBLEM SECTION -->
-   <section class="w-full scroll-reveal" style="background: linear-gradient(180deg, #0a0a0f 0%, #0f0f18 100%);">
+   <section class="w-full scroll-reveal bg-slate-50 border-t border-b border-slate-200">
     <div class="max-w-4xl mx-auto px-5 py-16 md:py-20">
      <div class="text-center mb-12">
-      <h2 class="font-display text-3xl md:text-4xl font-800 mb-4">Adakah Anda <span class="text-red-400">Mengalami</span> Ini?</h2>
-      <div class="w-16 h-1 bg-red-500 mx-auto rounded-full"></div>
+      <h2 class="font-display text-3xl md:text-4xl font-bold mb-4 text-slate-800">Adakah Anda <span class="text-rose-500">Mengalami</span> Ini?</h2>
+      <div class="w-16 h-1 bg-rose-400 mx-auto rounded-full"></div>
      </div>
      <div class="grid md:grid-cols-2 gap-4">
-      <div class="flex items-start gap-3 p-4 rounded-xl bg-red-500/5 border border-red-500/10"><i data-lucide="x-circle" style="width:22px;height:22px;color:#f87171;flex-shrink:0;margin-top:2px;"></i>
-       <p class="text-gray-300">Gaji masuk, gaji keluar — tak tahu duit pergi mana?</p>
+      <div class="flex items-start gap-3 p-5 rounded-2xl bg-white border border-rose-100 shadow-sm"><i data-lucide="x-circle" style="width:24px;height:24px;color:#f43f5e;flex-shrink:0;margin-top:2px;"></i>
+       <p class="text-slate-700 font-medium">Gaji masuk, gaji keluar — tak tahu duit pergi mana?</p>
       </div>
-      <div class="flex items-start gap-3 p-4 rounded-xl bg-red-500/5 border border-red-500/10"><i data-lucide="x-circle" style="width:22px;height:22px;color:#f87171;flex-shrink:0;margin-top:2px;"></i>
-       <p class="text-gray-300">Stress fikir pasal hutang, saving tak cukup?</p>
+      <div class="flex items-start gap-3 p-5 rounded-2xl bg-white border border-rose-100 shadow-sm"><i data-lucide="x-circle" style="width:24px;height:24px;color:#f43f5e;flex-shrink:0;margin-top:2px;"></i>
+       <p class="text-slate-700 font-medium">Stress fikir pasal hutang, saving tak cukup?</p>
       </div>
-      <div class="flex items-start gap-3 p-4 rounded-xl bg-red-500/5 border border-red-500/10"><i data-lucide="x-circle" style="width:22px;height:22px;color:#f87171;flex-shrink:0;margin-top:2px;"></i>
-       <p class="text-gray-300">Hubungan dengan pasangan &amp; keluarga semakin renggang?</p>
+      <div class="flex items-start gap-3 p-5 rounded-2xl bg-white border border-rose-100 shadow-sm"><i data-lucide="x-circle" style="width:24px;height:24px;color:#f43f5e;flex-shrink:0;margin-top:2px;"></i>
+       <p class="text-slate-700 font-medium">Hubungan dengan pasangan &amp; keluarga semakin renggang?</p>
       </div>
-      <div class="flex items-start gap-3 p-4 rounded-xl bg-red-500/5 border border-red-500/10"><i data-lucide="x-circle" style="width:22px;height:22px;color:#f87171;flex-shrink:0;margin-top:2px;"></i>
-       <p class="text-gray-300">Tak tahu macam mana nak bina legasi untuk anak-anak?</p>
+      <div class="flex items-start gap-3 p-5 rounded-2xl bg-white border border-rose-100 shadow-sm"><i data-lucide="x-circle" style="width:24px;height:24px;color:#f43f5e;flex-shrink:0;margin-top:2px;"></i>
+       <p class="text-slate-700 font-medium">Tak tahu macam mana nak bina legasi untuk anak-anak?</p>
       </div>
      </div>
-     <div class="text-center mt-10 p-6 rounded-2xl bg-gradient-to-r from-gold-500/10 to-transparent border border-gold-500/20">
-      <p class="text-xl font-semibold text-gold-400 font-display">Platform ini dicipta khas untuk ANDA.</p>
-      <p class="text-gray-400 mt-2">Satu sistem lengkap yang guide anda step-by-step.</p>
+     <div class="text-center mt-10 p-6 rounded-2xl bg-sky-50 border border-sky-200">
+      <p class="text-xl font-bold text-sky-600 font-display">Platform ini dicipta khas untuk ANDA.</p>
+      <p class="text-slate-600 mt-2 font-medium">Satu sistem lengkap yang guide anda step-by-step.</p>
      </div>
     </div>
    </section>
-
-   <!-- FREE TRIAL - PRODUCT LED GROWTH -->
-   <section id="trials" class="w-full scroll-reveal" style="background: linear-gradient(180deg, #12121a 0%, #0f0f18 100%);">
+ 
+   <!-- FREE TRIAL -->
+   <section id="trials" class="w-full scroll-reveal bg-white">
     <div class="max-w-6xl mx-auto px-5 py-16 md:py-24">
      <div class="text-center mb-10">
-      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 mb-6"><span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> <span class="text-emerald-400 text-sm font-semibold tracking-wide">PERCUBAAN PERCUMA - TANPA KOMITMEN</span>
+      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-emerald-200 bg-emerald-50 mb-6"><span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> <span class="text-emerald-700 text-sm font-bold tracking-wide">PERCUBAAN PERCUMA - TANPA KOMITMEN</span>
       </div>
-      <h2 class="font-display text-3xl md:text-5xl font-900 mb-4">Rasa Sendiri, Tanpa <span class="text-emerald-400">Risiko</span></h2>
-      <p class="text-gray-400 max-w-2xl mx-auto text-lg mb-8">Cuba rasakan, nilai dan lihat paparan sebenarnya sebelum membuat keputusan. Kebanyakan orang beli selepas mencuba 2 daripada kalkulator. Ada 4 free trial, mulakan adventure anda!</p>
+      <h2 class="font-display text-3xl md:text-5xl font-bold mb-4 text-slate-800">Rasa Sendiri, Tanpa <span class="text-emerald-500">Risiko</span></h2>
+      <p class="text-slate-600 max-w-2xl mx-auto text-lg mb-8">Cuba rasakan, nilai dan lihat paparan sebenarnya sebelum membuat keputusan. Kebanyakan orang beli selepas mencuba 2 daripada kalkulator. Ada 4 free trial, mulakan adventure anda!</p>
       
-      <!-- New Mockup Link Button -->
-      <a href="https://fin-think.github.io/teaserFPC/" target="_blank" rel="noopener noreferrer" class="btn-glow inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-emerald-500 to-emerald-600 text-dark-900 font-bold text-lg rounded-xl hover:from-emerald-400 hover:to-emerald-500 transition-all shadow-lg mb-6">
+      <a href="https://fin-think.github.io/teaserFPC/" target="_blank" rel="noopener noreferrer" class="btn-glow inline-flex items-center justify-center gap-2 px-8 py-4 bg-emerald-400 text-slate-900 font-bold text-lg rounded-2xl hover:bg-emerald-300 transition-all shadow-lg mb-6">
         <i data-lucide="external-link" style="width:20px;height:20px;"></i> Mulakan Adventure Anda Di Sini
       </a>
      </div>
-
-     <!-- FOMO Message -->
-     <div class="mt-12 p-6 md:p-8 rounded-2xl border border-gold-500/20 bg-gradient-to-r from-gold-500/5 via-transparent to-gold-500/5 text-center">
-      <div class="inline-flex items-center gap-2 mb-3"><i data-lucide="flame" style="width:18px;height:18px;color:#ef4444;"></i> <span class="text-red-400 text-sm font-bold">INSIGHT: Kebanyakan pengguna beli dalam 5 minit selepas cuba!</span>
+ 
+     <div class="mt-12 p-6 md:p-8 rounded-3xl border border-yellow-200 bg-yellow-50 text-center shadow-sm">
+      <div class="inline-flex items-center gap-2 mb-3"><i data-lucide="flame" style="width:20px;height:20px;color:#ea580c;"></i> <span class="text-orange-600 text-sm font-bold">INSIGHT: Kebanyakan pengguna beli dalam 5 minit selepas cuba!</span>
       </div>
-      <p class="text-gray-300 font-semibold text-lg">Selepas rasa kekuatan tools ini, anda akan faham mengapa <span class="text-gold-400">RM100 untuk semua 4 level adalah deal terbaik.</span></p>
-      <p class="text-gray-500 text-sm mt-2">Percubaan percuma anda akan tamat, tapi anda akan tahu apa yang anda dapat.</p>
+      <p class="text-slate-800 font-bold text-lg">Selepas rasa kekuatan tools ini, anda akan faham mengapa <span class="text-sky-600 bg-sky-100 px-2 py-1 rounded-lg">RM100 untuk semua 4 level adalah deal terbaik.</span></p>
      </div>
     </div>
    </section>
-
+ 
    <!-- LEVELS -->
-   <section id="levels" class="w-full scroll-reveal bg-noise" style="background: linear-gradient(180deg, #12121a 0%, #0a0a0f 100%);">
+   <section id="levels" class="w-full scroll-reveal bg-noise" style="background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);">
     <div class="relative z-10 max-w-6xl mx-auto px-5 py-16 md:py-20">
      <div class="text-center mb-14">
-      <h2 class="font-display text-3xl md:text-5xl font-800 mb-4">4 Level <span class="shimmer-text">Transformasi Hidup</span></h2>
-      <p class="text-gray-400 max-w-xl mx-auto">Setiap level dibina untuk membawa anda ke tahap seterusnya. Selesaikan aktiviti, unlock level baru.</p>
+      <h2 class="font-display text-3xl md:text-5xl font-bold mb-4 text-slate-800">4 Level <span class="text-sky-500">Transformasi Hidup</span></h2>
+      <p class="text-slate-600 max-w-xl mx-auto font-medium">Setiap level dibina untuk membawa anda ke tahap seterusnya. Selesaikan aktiviti, unlock level baru.</p>
      </div>
-     <div class="grid md:grid-cols-2 gap-6">
+     <div class="grid md:grid-cols-2 gap-8">
       <!-- Level 1 -->
-      <div class="level-card card-float rounded-2xl p-6 relative overflow-hidden">
-       <div class="ribbon">
-        <span>Popular</span>
-       </div>
-       <div class="flex items-center gap-3 mb-4">
-        <div class="w-12 h-12 rounded-xl bg-emerald-500/20 flex items-center justify-center"><i data-lucide="wallet" style="width:24px;height:24px;color:#34d399;"></i>
+      <div class="level-card level-card-1 card-float p-8 relative overflow-hidden bg-emerald-50 border-emerald-100">
+       <div class="ribbon"><span>Popular</span></div>
+       <div class="flex items-center gap-4 mb-5">
+        <div class="w-14 h-14 rounded-2xl bg-emerald-200 flex items-center justify-center shadow-sm"><i data-lucide="wallet" style="width:28px;height:28px;color:#047857;"></i>
         </div>
         <div>
-         <div class="text-xs text-emerald-400 font-semibold uppercase tracking-wider">
-          Level 1
-         </div>
-         <h3 class="font-display text-xl font-800">Kewangan</h3>
+         <div class="text-xs text-emerald-600 font-bold uppercase tracking-wider mb-1">Level 1</div>
+         <h3 class="font-display text-2xl font-bold text-slate-800">Kewangan</h3>
         </div>
        </div>
-       <p class="text-gray-400 text-sm mb-5">Kuasai kewangan peribadi anda. Dari budgeting hingga pelaburan — semua bermula di sini.</p>
-       <div class="flex gap-4 mb-5">
-        <div class="flex items-center gap-2 text-sm text-gray-300"><i data-lucide="calculator" style="width:16px;height:16px;color:#34d399;"></i> 5 Calculator
-        </div>
-        <div class="flex items-center gap-2 text-sm text-gray-300"><i data-lucide="book-open" style="width:16px;height:16px;color:#34d399;"></i> 11 Ebook
-        </div>
+       <p class="text-slate-600 text-sm mb-6 font-medium">Kuasai kewangan peribadi anda. Dari budgeting hingga pelaburan — semua bermula di sini.</p>
+       <div class="flex gap-4 mb-6">
+        <div class="flex items-center gap-2 text-sm font-bold text-emerald-700 bg-white px-3 py-1.5 rounded-lg shadow-sm"><i data-lucide="calculator" style="width:16px;height:16px;"></i> 5 Calculator</div>
+        <div class="flex items-center gap-2 text-sm font-bold text-emerald-700 bg-white px-3 py-1.5 rounded-lg shadow-sm"><i data-lucide="book-open" style="width:16px;height:16px;"></i> 11 Ebook</div>
        </div>
-       <div class="flex items-center justify-between pt-4 border-t border-white/5">
-        <div><span class="text-2xl font-display font-800 text-emerald-400">RM40</span> <span class="text-xs text-gray-500 ml-1">sekali bayar</span>
-        </div><span class="text-xs bg-emerald-500/10 text-emerald-400 px-3 py-1 rounded-full font-semibold">Entry Level</span>
+       <div class="flex items-center justify-between pt-5 border-t border-emerald-200/50">
+        <div><span class="text-3xl font-display font-bold text-emerald-600">RM40</span> <span class="text-xs font-bold text-slate-500 ml-1">sekali bayar</span></div>
+        <span class="text-xs bg-emerald-200 text-emerald-800 px-4 py-2 rounded-full font-bold shadow-sm">Entry Level</span>
        </div>
       </div>
       <!-- Level 2 -->
-      <div class="level-card card-float rounded-2xl p-6 relative overflow-hidden">
-       <div class="flex items-center gap-3 mb-4">
-        <div class="w-12 h-12 rounded-xl bg-pink-500/20 flex items-center justify-center"><i data-lucide="heart" style="width:24px;height:24px;color:#f472b6;"></i>
+      <div class="level-card level-card-2 card-float p-8 relative overflow-hidden bg-pink-50 border-pink-100">
+       <div class="flex items-center gap-4 mb-5">
+        <div class="w-14 h-14 rounded-2xl bg-pink-200 flex items-center justify-center shadow-sm"><i data-lucide="heart" style="width:28px;height:28px;color:#be185d;"></i>
         </div>
         <div>
-         <div class="text-xs text-pink-400 font-semibold uppercase tracking-wider">
-          Level 2
-         </div>
-         <h3 class="font-display text-xl font-800">Keharmonian</h3>
+         <div class="text-xs text-pink-600 font-bold uppercase tracking-wider mb-1">Level 2</div>
+         <h3 class="font-display text-2xl font-bold text-slate-800">Keharmonian</h3>
         </div>
        </div>
-       <p class="text-gray-400 text-sm mb-5">Perkukuh hubungan dengan pasangan &amp; keluarga. Ujian personaliti &amp; panduan praktikal.</p>
-       <div class="flex gap-4 mb-5">
-        <div class="flex items-center gap-2 text-sm text-gray-300"><i data-lucide="clipboard-check" style="width:16px;height:16px;color:#f472b6;"></i> 4 Calculator/Ujian
-        </div>
-        <div class="flex items-center gap-2 text-sm text-gray-300"><i data-lucide="book-open" style="width:16px;height:16px;color:#f472b6;"></i> 7 Ebook
-        </div>
+       <p class="text-slate-600 text-sm mb-6 font-medium">Perkukuh hubungan dengan pasangan &amp; keluarga. Ujian personaliti &amp; panduan praktikal.</p>
+       <div class="flex gap-4 mb-6">
+        <div class="flex items-center gap-2 text-sm font-bold text-pink-700 bg-white px-3 py-1.5 rounded-lg shadow-sm"><i data-lucide="clipboard-check" style="width:16px;height:16px;"></i> 4 Calculator/Ujian</div>
+        <div class="flex items-center gap-2 text-sm font-bold text-pink-700 bg-white px-3 py-1.5 rounded-lg shadow-sm"><i data-lucide="book-open" style="width:16px;height:16px;"></i> 7 Ebook</div>
        </div>
-       <div class="flex items-center justify-between pt-4 border-t border-white/5">
-        <div><span class="text-2xl font-display font-800 text-pink-400">RM30</span> <span class="text-xs text-gray-500 ml-1">sekali bayar</span>
-        </div><span class="text-xs bg-pink-500/10 text-pink-400 px-3 py-1 rounded-full font-semibold">Spouse &amp; Family</span>
+       <div class="flex items-center justify-between pt-5 border-t border-pink-200/50">
+        <div><span class="text-3xl font-display font-bold text-pink-600">RM30</span> <span class="text-xs font-bold text-slate-500 ml-1">sekali bayar</span></div>
+        <span class="text-xs bg-pink-200 text-pink-800 px-4 py-2 rounded-full font-bold shadow-sm">Spouse &amp; Family</span>
        </div>
       </div>
       <!-- Level 3 -->
-      <div class="level-card card-float rounded-2xl p-6 relative overflow-hidden">
-       <div class="flex items-center gap-3 mb-4">
-        <div class="w-12 h-12 rounded-xl bg-blue-500/20 flex items-center justify-center"><i data-lucide="landmark" style="width:24px;height:24px;color:#60a5fa;"></i>
+      <div class="level-card level-card-3 card-float p-8 relative overflow-hidden bg-blue-50 border-blue-100">
+       <div class="flex items-center gap-4 mb-5">
+        <div class="w-14 h-14 rounded-2xl bg-blue-200 flex items-center justify-center shadow-sm"><i data-lucide="landmark" style="width:28px;height:28px;color:#1d4ed8;"></i>
         </div>
         <div>
-         <div class="text-xs text-blue-400 font-semibold uppercase tracking-wider">
-          Level 3
-         </div>
-         <h3 class="font-display text-xl font-800">Legasi</h3>
+         <div class="text-xs text-blue-600 font-bold uppercase tracking-wider mb-1">Level 3</div>
+         <h3 class="font-display text-2xl font-bold text-slate-800">Legasi</h3>
         </div>
        </div>
-       <p class="text-gray-400 text-sm mb-5">Rancang pendidikan anak, pewarisan harta, wasiat &amp; amanah. Pastikan keluarga terjaga selepas anda tiada.</p>
-       <div class="flex gap-4 mb-5">
-        <div class="flex items-center gap-2 text-sm text-gray-300"><i data-lucide="clipboard-check" style="width:16px;height:16px;color:#60a5fa;"></i> 4 Calculator/Ujian
-        </div>
-        <div class="flex items-center gap-2 text-sm text-gray-300"><i data-lucide="book-open" style="width:16px;height:16px;color:#60a5fa;"></i> 8 Ebook
-        </div>
+       <p class="text-slate-600 text-sm mb-6 font-medium">Rancang pendidikan anak, pewarisan harta, wasiat &amp; amanah. Pastikan keluarga terjaga.</p>
+       <div class="flex gap-4 mb-6">
+        <div class="flex items-center gap-2 text-sm font-bold text-blue-700 bg-white px-3 py-1.5 rounded-lg shadow-sm"><i data-lucide="clipboard-check" style="width:16px;height:16px;"></i> 4 Calculator/Ujian</div>
+        <div class="flex items-center gap-2 text-sm font-bold text-blue-700 bg-white px-3 py-1.5 rounded-lg shadow-sm"><i data-lucide="book-open" style="width:16px;height:16px;"></i> 8 Ebook</div>
        </div>
-       <div class="flex items-center justify-between pt-4 border-t border-white/5">
-        <div><span class="text-2xl font-display font-800 text-blue-400">RM30</span> <span class="text-xs text-gray-500 ml-1">sekali bayar</span>
-        </div><span class="text-xs bg-blue-500/10 text-blue-400 px-3 py-1 rounded-full font-semibold">Warisan &amp; Amanah</span>
+       <div class="flex items-center justify-between pt-5 border-t border-blue-200/50">
+        <div><span class="text-3xl font-display font-bold text-blue-600">RM30</span> <span class="text-xs font-bold text-slate-500 ml-1">sekali bayar</span></div>
+        <span class="text-xs bg-blue-200 text-blue-800 px-4 py-2 rounded-full font-bold shadow-sm">Warisan &amp; Amanah</span>
        </div>
       </div>
       <!-- Level 4 -->
-      <div class="level-card card-float rounded-2xl p-6 relative overflow-hidden">
-       <div class="flex items-center gap-3 mb-4">
-        <div class="w-12 h-12 rounded-xl bg-orange-500/20 flex items-center justify-center"><i data-lucide="baby" style="width:24px;height:24px;color:#fb923c;"></i>
+      <div class="level-card level-card-4 card-float p-8 relative overflow-hidden bg-orange-50 border-orange-100">
+       <div class="flex items-center gap-4 mb-5">
+        <div class="w-14 h-14 rounded-2xl bg-orange-200 flex items-center justify-center shadow-sm"><i data-lucide="baby" style="width:28px;height:28px;color:#c2410c;"></i>
         </div>
         <div>
-         <div class="text-xs text-orange-400 font-semibold uppercase tracking-wider">
-          Level 4
-         </div>
-         <h3 class="font-display text-xl font-800">Kids</h3>
+         <div class="text-xs text-orange-600 font-bold uppercase tracking-wider mb-1">Level 4</div>
+         <h3 class="font-display text-2xl font-bold text-slate-800">Kids</h3>
         </div>
        </div>
-       <p class="text-gray-400 text-sm mb-5">Didik anak-anak tentang agama &amp; nilai hidup melalui games &amp; ujian interaktif yang menyeronokkan.</p>
-       <div class="flex gap-4 mb-5">
-        <div class="flex items-center gap-2 text-sm text-gray-300"><i data-lucide="gamepad-2" style="width:16px;height:16px;color:#fb923c;"></i> 13 Ujian/Games
-        </div>
-        <div class="flex items-center gap-2 text-sm text-gray-300"><i data-lucide="book-open" style="width:16px;height:16px;color:#fb923c;"></i> 18 Ebook
-        </div>
+       <p class="text-slate-600 text-sm mb-6 font-medium">Didik anak-anak tentang agama &amp; nilai hidup melalui games &amp; ujian interaktif yang fun!</p>
+       <div class="flex gap-4 mb-6">
+        <div class="flex items-center gap-2 text-sm font-bold text-orange-700 bg-white px-3 py-1.5 rounded-lg shadow-sm"><i data-lucide="gamepad-2" style="width:16px;height:16px;"></i> 13 Ujian/Games</div>
+        <div class="flex items-center gap-2 text-sm font-bold text-orange-700 bg-white px-3 py-1.5 rounded-lg shadow-sm"><i data-lucide="book-open" style="width:16px;height:16px;"></i> 18 Ebook</div>
        </div>
-       <div class="flex items-center justify-between pt-4 border-t border-white/5">
-        <div><span class="text-2xl font-display font-800 text-orange-400">RM50</span> <span class="text-xs text-gray-500 ml-1">sekali bayar</span>
-        </div><span class="text-xs bg-orange-500/10 text-orange-400 px-3 py-1 rounded-full font-semibold">Fun Learning</span>
+       <div class="flex items-center justify-between pt-5 border-t border-orange-200/50">
+        <div><span class="text-3xl font-display font-bold text-orange-600">RM50</span> <span class="text-xs font-bold text-slate-500 ml-1">sekali bayar</span></div>
+        <span class="text-xs bg-orange-200 text-orange-800 px-4 py-2 rounded-full font-bold shadow-sm">Fun Learning</span>
        </div>
       </div>
      </div>
     </div>
    </section>
-
+ 
    <!-- BUNDLE OFFER -->
-   <section class="w-full scroll-reveal">
+   <section class="w-full scroll-reveal bg-white">
     <div class="max-w-4xl mx-auto px-5 py-16 md:py-20">
-     <div class="relative rounded-3xl overflow-hidden p-8 md:p-12 text-center" style="background: linear-gradient(135deg, #1a1025 0%, #0f1922 50%, #1a1025 100%); border: 2px solid rgba(234,179,8,0.3);">
+     <div class="relative rounded-3xl overflow-hidden p-8 md:p-12 text-center bg-sky-50 border-4 border-yellow-300 shadow-xl">
       <!-- Decorative -->
-      <div class="absolute top-0 left-0 w-32 h-32 bg-gold-500/10 rounded-full blur-3xl"></div>
-      <div class="absolute bottom-0 right-0 w-40 h-40 bg-gold-500/10 rounded-full blur-3xl"></div>
+      <div class="absolute top-0 left-0 w-32 h-32 bg-yellow-300/30 rounded-full blur-3xl"></div>
+      <div class="absolute bottom-0 right-0 w-40 h-40 bg-sky-300/30 rounded-full blur-3xl"></div>
       <div class="relative z-10">
-       <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-500/10 border border-red-500/30 mb-6"><i data-lucide="flame" style="width:16px;height:16px;color:#ef4444;"></i> <span class="text-red-400 text-sm font-bold">TAWARAN TERHAD</span>
+       <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-rose-100 border border-rose-200 mb-6 shadow-sm"><i data-lucide="flame" style="width:18px;height:18px;color:#e11d48;"></i> <span class="text-rose-600 text-sm font-bold">TAWARAN TERHAD</span>
        </div>
-       <h2 class="font-display text-3xl md:text-5xl font-900 mb-4">Bundle Penuh — <span class="text-gold-400" id="bundlePriceSection">RM100</span></h2>
-       <p class="text-gray-400 text-lg mb-2">Beli asing: RM40 + RM30 + RM30 + RM50 = <span class="text-gray-300 line-through">RM150</span></p>
-       <p class="text-2xl font-bold text-gold-400 mb-8">Jimat RM50! 🔥</p>
-       <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
-        <div class="p-3 rounded-xl bg-white/5 border border-white/5">
-         <div class="text-2xl font-display font-800 text-emerald-400">
-          26
-         </div>
-         <div class="text-xs text-gray-500 mt-1">
-          Calculator &amp; Ujian
-         </div>
+       <h2 class="font-display text-4xl md:text-5xl font-bold mb-4 text-slate-800">Bundle Penuh — <span class="text-sky-600" id="bundlePriceSection">RM100</span></h2>
+       <p class="text-slate-600 text-lg mb-2 font-medium">Beli asing: RM40 + RM30 + RM30 + RM50 = <span class="text-slate-400 line-through">RM150</span></p>
+       <p class="text-2xl font-bold text-yellow-500 mb-8 bg-white inline-block px-6 py-2 rounded-full shadow-sm border border-yellow-100">Jimat RM50! 🔥</p>
+       <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
+        <div class="p-4 rounded-2xl bg-white border border-slate-100 shadow-sm">
+         <div class="text-3xl font-display font-bold text-emerald-500">26</div>
+         <div class="text-xs font-bold text-slate-500 mt-1 uppercase">Calculator &amp; Ujian</div>
         </div>
-        <div class="p-3 rounded-xl bg-white/5 border border-white/5">
-         <div class="text-2xl font-display font-800 text-pink-400">
-          44
-         </div>
-         <div class="text-xs text-gray-500 mt-1">
-          Ebook Eksklusif
-         </div>
+        <div class="p-4 rounded-2xl bg-white border border-slate-100 shadow-sm">
+         <div class="text-3xl font-display font-bold text-pink-500">44</div>
+         <div class="text-xs font-bold text-slate-500 mt-1 uppercase">Ebook Eksklusif</div>
         </div>
-        <div class="p-3 rounded-xl bg-white/5 border border-white/5">
-         <div class="text-2xl font-display font-800 text-blue-400">
-          4
-         </div>
-         <div class="text-xs text-gray-500 mt-1">
-          Level Penuh
-         </div>
+        <div class="p-4 rounded-2xl bg-white border border-slate-100 shadow-sm">
+         <div class="text-3xl font-display font-bold text-blue-500">4</div>
+         <div class="text-xs font-bold text-slate-500 mt-1 uppercase">Level Penuh</div>
         </div>
-        <div class="p-3 rounded-xl bg-white/5 border border-white/5">
-         <div class="text-2xl font-display font-800 text-orange-400">
-          4
-         </div>
-         <div class="text-xs text-gray-500 mt-1">
-          Games Kids
-         </div>
+        <div class="p-4 rounded-2xl bg-white border border-slate-100 shadow-sm">
+         <div class="text-3xl font-display font-bold text-orange-500">13+</div>
+         <div class="text-xs font-bold text-slate-500 mt-1 uppercase">Games Kids</div>
         </div>
        </div>
-       <div class="flex flex-col items-center gap-3 mb-6">
-        <div class="flex items-center gap-2 text-sm text-gray-300"><i data-lucide="check-circle" style="width:16px;height:16px;color:#34d399;"></i> Akses semua 4 level seumur hidup
-        </div>
-        <div class="flex items-center gap-2 text-sm text-gray-300"><i data-lucide="check-circle" style="width:16px;height:16px;color:#34d399;"></i> Password exclusive untuk unlock semua content
-        </div>
-        <div class="flex items-center gap-2 text-sm text-gray-300"><i data-lucide="check-circle" style="width:16px;height:16px;color:#34d399;"></i> Flow interaktif — siap satu, unlock seterusnya
-        </div>
-       </div><a id="bundleCta" href="#" target="_blank" rel="noopener noreferrer" class="btn-glow inline-flex items-center justify-center gap-2 px-10 py-5 bg-gradient-to-r from-gold-500 to-gold-600 text-dark-900 font-bold text-xl rounded-2xl hover:from-gold-400 hover:to-gold-500 transition-all"> <i data-lucide="crown" style="width:24px;height:24px;"></i> DAPATKAN BUNDLE SEKARANG </a>
-       <p class="text-xs text-gray-500 mt-4">Bayaran selamat melalui OnPay · Akses terus selepas bayaran</p>
+       <div class="flex flex-col items-center gap-3 mb-8 bg-white/60 p-6 rounded-2xl max-w-xl mx-auto backdrop-blur-sm">
+        <div class="flex items-center gap-2 text-sm font-bold text-slate-700"><i data-lucide="check-circle" style="width:20px;height:20px;color:#10b981;"></i> Akses semua 4 level seumur hidup</div>
+        <div class="flex items-center gap-2 text-sm font-bold text-slate-700"><i data-lucide="check-circle" style="width:20px;height:20px;color:#10b981;"></i> Password exclusive untuk unlock semua content</div>
+        <div class="flex items-center gap-2 text-sm font-bold text-slate-700"><i data-lucide="check-circle" style="width:20px;height:20px;color:#10b981;"></i> Flow interaktif — siap satu, unlock seterusnya</div>
+       </div>
+       <a id="bundleCta" href="#" target="_blank" rel="noopener noreferrer" class="btn-glow inline-flex items-center justify-center gap-2 px-10 py-5 bg-yellow-400 text-slate-900 font-bold text-xl rounded-2xl hover:bg-yellow-300 transition-all shadow-xl"> <i data-lucide="crown" style="width:24px;height:24px;"></i> DAPATKAN BUNDLE SEKARANG </a>
+       <p class="text-sm font-bold text-slate-500 mt-6"><i data-lucide="shield-check" style="width:16px;height:16px;display:inline;color:#10b981;"></i> Bayaran selamat melalui OnPay · Akses terus selepas bayaran</p>
       </div>
      </div>
     </div>
    </section>
-
+ 
    <!-- HOW IT WORKS -->
-   <section class="w-full scroll-reveal bg-dark-800">
+   <section class="w-full scroll-reveal bg-slate-50 border-t border-slate-200">
     <div class="max-w-4xl mx-auto px-5 py-16 md:py-20">
      <div class="text-center mb-12">
-      <h2 class="font-display text-3xl md:text-4xl font-800 mb-4">Macam Mana <span class="text-gold-400">Ia Berfungsi?</span></h2>
-      <div class="w-16 h-1 bg-gold-500 mx-auto rounded-full"></div>
+      <h2 class="font-display text-3xl md:text-4xl font-bold mb-4 text-slate-800">Macam Mana <span class="text-sky-500">Ia Berfungsi?</span></h2>
+      <div class="w-16 h-1 bg-sky-400 mx-auto rounded-full"></div>
      </div>
      <div class="grid md:grid-cols-3 gap-6">
-      <div class="text-center p-6">
-       <div class="w-16 h-16 rounded-2xl bg-gold-500/10 flex items-center justify-center mx-auto mb-4 border border-gold-500/20"><span class="text-2xl font-display font-900 text-gold-400">1</span>
+      <div class="text-center p-8 bg-white rounded-3xl border border-slate-100 shadow-sm">
+       <div class="w-20 h-20 rounded-full bg-sky-100 flex items-center justify-center mx-auto mb-6 shadow-sm"><span class="text-3xl font-display font-bold text-sky-600">1</span>
        </div>
-       <h3 class="font-display text-lg font-700 mb-2">Pilih &amp; Bayar</h3>
-       <p class="text-gray-400 text-sm">Pilih level atau bundle. Bayar melalui OnPay. Terima password terus.</p>
+       <h3 class="font-display text-xl font-bold mb-3 text-slate-800">Pilih &amp; Bayar</h3>
+       <p class="text-slate-600 font-medium">Pilih level atau bundle. Bayar melalui OnPay. Terima password terus ke email.</p>
       </div>
-      <div class="text-center p-6">
-       <div class="w-16 h-16 rounded-2xl bg-gold-500/10 flex items-center justify-center mx-auto mb-4 border border-gold-500/20"><span class="text-2xl font-display font-900 text-gold-400">2</span>
+      <div class="text-center p-8 bg-white rounded-3xl border border-slate-100 shadow-sm">
+       <div class="w-20 h-20 rounded-full bg-sky-100 flex items-center justify-center mx-auto mb-6 shadow-sm"><span class="text-3xl font-display font-bold text-sky-600">2</span>
        </div>
-       <h3 class="font-display text-lg font-700 mb-2">Login &amp; Mula</h3>
-       <p class="text-gray-400 text-sm">Masukkan password. Mulakan aktiviti pertama. Ikut flow step-by-step.</p>
+       <h3 class="font-display text-xl font-bold mb-3 text-slate-800">Login &amp; Mula</h3>
+       <p class="text-slate-600 font-medium">Masukkan password. Mulakan aktiviti pertama. Ikut flow step-by-step yang mudah.</p>
       </div>
-      <div class="text-center p-6">
-       <div class="w-16 h-16 rounded-2xl bg-gold-500/10 flex items-center justify-center mx-auto mb-4 border border-gold-500/20"><span class="text-2xl font-display font-900 text-gold-400">3</span>
+      <div class="text-center p-8 bg-white rounded-3xl border border-slate-100 shadow-sm">
+       <div class="w-20 h-20 rounded-full bg-sky-100 flex items-center justify-center mx-auto mb-6 shadow-sm"><span class="text-3xl font-display font-bold text-sky-600">3</span>
        </div>
-       <h3 class="font-display text-lg font-700 mb-2">Unlock &amp; Level Up</h3>
-       <p class="text-gray-400 text-sm">Siap satu aktiviti, popup unlock yang seterusnya. Naik level demi level!</p>
+       <h3 class="font-display text-xl font-bold mb-3 text-slate-800">Unlock &amp; Level Up</h3>
+       <p class="text-slate-600 font-medium">Siap satu aktiviti, popup unlock yang seterusnya. Naik level demi level bersama keluarga!</p>
       </div>
      </div>
     </div>
    </section>
-
+ 
    <!-- TESTIMONIALS -->
-   <section class="w-full scroll-reveal" style="background:#0a0a0f;">
+   <section class="w-full scroll-reveal bg-white">
     <div class="max-w-4xl mx-auto px-5 py-16 md:py-20">
      <div class="text-center mb-12">
-      <h2 class="font-display text-3xl md:text-4xl font-800 mb-4">Apa Kata <span class="text-gold-400">Pengguna?</span></h2>
+      <h2 class="font-display text-3xl md:text-4xl font-bold mb-4 text-slate-800">Apa Kata <span class="text-sky-500">Ibu Bapa Lain?</span></h2>
      </div>
-     <div class="grid md:grid-cols-3 gap-5">
-      <div class="testimonial-card rounded-2xl p-5">
-       <div class="flex gap-1 mb-3"><span class="text-gold-400">★</span><span class="text-gold-400">★</span><span class="text-gold-400">★</span><span class="text-gold-400">★</span><span class="text-gold-400">★</span>
+     <div class="grid md:grid-cols-3 gap-6">
+      <div class="testimonial-card rounded-3xl p-6">
+       <div class="flex gap-1 mb-4"><span class="text-yellow-400 text-lg">★</span><span class="text-yellow-400 text-lg">★</span><span class="text-yellow-400 text-lg">★</span><span class="text-yellow-400 text-lg">★</span><span class="text-yellow-400 text-lg">★</span>
        </div>
-       <p class="text-gray-300 text-sm mb-4">"Baru sebulan guna calculator budgeting, dah nampak mana duit bocor. Sekarang dah boleh save RM500 sebulan!"</p>
-       <div class="flex items-center gap-2">
-        <div class="w-8 h-8 rounded-full bg-emerald-500/20 flex items-center justify-center text-emerald-400 text-xs font-bold">
-         A
-        </div>
+       <p class="text-slate-600 font-medium mb-6">"Baru sebulan guna calculator budgeting, dah nampak mana duit bocor. Sekarang dah boleh save RM500 sebulan!"</p>
+       <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-600 text-sm font-bold">A</div>
         <div>
-         <div class="text-sm font-semibold">
-          Aisyah, 28
-         </div>
-         <div class="text-xs text-gray-500">
-          Level 1 - Kewangan
-         </div>
+         <div class="text-sm font-bold text-slate-800">Aisyah, 28</div>
+         <div class="text-xs font-bold text-slate-400 uppercase mt-0.5">Level 1 - Kewangan</div>
         </div>
        </div>
       </div>
-      <div class="testimonial-card rounded-2xl p-5">
-       <div class="flex gap-1 mb-3"><span class="text-gold-400">★</span><span class="text-gold-400">★</span><span class="text-gold-400">★</span><span class="text-gold-400">★</span><span class="text-gold-400">★</span>
+      <div class="testimonial-card rounded-3xl p-6">
+       <div class="flex gap-1 mb-4"><span class="text-yellow-400 text-lg">★</span><span class="text-yellow-400 text-lg">★</span><span class="text-yellow-400 text-lg">★</span><span class="text-yellow-400 text-lg">★</span><span class="text-yellow-400 text-lg">★</span>
        </div>
-       <p class="text-gray-300 text-sm mb-4">"Ujian keharmonian tu buka mata kami. Sekarang komunikasi dengan isteri jauh lebih baik."</p>
-       <div class="flex items-center gap-2">
-        <div class="w-8 h-8 rounded-full bg-pink-500/20 flex items-center justify-center text-pink-400 text-xs font-bold">
-         H
-        </div>
+       <p class="text-slate-600 font-medium mb-6">"Ujian keharmonian tu buka mata kami. Sekarang komunikasi dengan isteri jauh lebih baik. Sangat praktikal."</p>
+       <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-full bg-pink-100 flex items-center justify-center text-pink-600 text-sm font-bold">H</div>
         <div>
-         <div class="text-sm font-semibold">
-          Haziq, 35
-         </div>
-         <div class="text-xs text-gray-500">
-          Level 2 - Keharmonian
-         </div>
+         <div class="text-sm font-bold text-slate-800">Haziq, 35</div>
+         <div class="text-xs font-bold text-slate-400 uppercase mt-0.5">Level 2 - Keharmonian</div>
         </div>
        </div>
       </div>
-      <div class="testimonial-card rounded-2xl p-5">
-       <div class="flex gap-1 mb-3"><span class="text-gold-400">★</span><span class="text-gold-400">★</span><span class="text-gold-400">★</span><span class="text-gold-400">★</span><span class="text-gold-400">★</span>
+      <div class="testimonial-card rounded-3xl p-6">
+       <div class="flex gap-1 mb-4"><span class="text-yellow-400 text-lg">★</span><span class="text-yellow-400 text-lg">★</span><span class="text-yellow-400 text-lg">★</span><span class="text-yellow-400 text-lg">★</span><span class="text-yellow-400 text-lg">★</span>
        </div>
-       <p class="text-gray-300 text-sm mb-4">"Anak-anak suka sangat games kewangan! Belajar sambil main. Worth every sen."</p>
-       <div class="flex items-center gap-2">
-        <div class="w-8 h-8 rounded-full bg-orange-500/20 flex items-center justify-center text-orange-400 text-xs font-bold">
-         N
-        </div>
+       <p class="text-slate-600 font-medium mb-6">"Anak-anak suka sangat games kewangan! Belajar sambil main. Memang berbaloi dan sangat interaktif."</p>
+       <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-full bg-orange-100 flex items-center justify-center text-orange-600 text-sm font-bold">N</div>
         <div>
-         <div class="text-sm font-semibold">
-          Nurul, 32
-         </div>
-         <div class="text-xs text-gray-500">
-          Level 4 - Kids
-         </div>
+         <div class="text-sm font-bold text-slate-800">Nurul, 32</div>
+         <div class="text-xs font-bold text-slate-400 uppercase mt-0.5">Level 4 - Kids</div>
         </div>
        </div>
       </div>
      </div>
     </div>
    </section>
-
+ 
    <!-- FAQ -->
-   <section class="w-full scroll-reveal bg-dark-800">
+   <section class="w-full scroll-reveal bg-slate-50 border-t border-slate-200">
     <div class="max-w-3xl mx-auto px-5 py-16 md:py-20">
      <div class="text-center mb-12">
-      <h2 class="font-display text-3xl md:text-4xl font-800 mb-4">Soalan <span class="text-gold-400">Lazim</span></h2>
+      <h2 class="font-display text-3xl md:text-4xl font-bold mb-4 text-slate-800">Soalan <span class="text-sky-500">Lazim</span></h2>
      </div>
-     <div class="space-y-3" id="faqContainer">
-      <div class="faq-item rounded-xl border border-white/10 overflow-hidden"><button onclick="toggleFaq(this)" class="w-full flex items-center justify-between p-5 text-left hover:bg-white/5 transition-colors"> <span class="font-semibold text-sm">Macam mana nak akses selepas bayar?</span> <i data-lucide="chevron-down" style="width:18px;height:18px;color:#9ca3af;transition:transform 0.3s;"></i> </button>
-       <div class="faq-answer px-5 pb-5 hidden">
-        <p class="text-gray-400 text-sm">Selepas bayaran melalui OnPay, anda akan terima password melalui email. Masukkan password di web untuk unlock level yang dibeli.</p>
+     <div class="space-y-4" id="faqContainer">
+      <div class="faq-item rounded-2xl bg-white border border-slate-200 shadow-sm overflow-hidden"><button onclick="toggleFaq(this)" class="w-full flex items-center justify-between p-6 text-left hover:bg-slate-50 transition-colors"> <span class="font-bold text-slate-800">Macam mana nak akses selepas bayar?</span> <i data-lucide="chevron-down" style="width:20px;height:20px;color:#94a3b8;transition:transform 0.3s;"></i> </button>
+       <div class="faq-answer px-6 pb-6 hidden">
+        <p class="text-slate-600 font-medium">Selepas bayaran melalui OnPay, anda akan terima password melalui email. Masukkan password di web untuk unlock level yang dibeli.</p>
        </div>
       </div>
-      <div class="faq-item rounded-xl border border-white/10 overflow-hidden"><button onclick="toggleFaq(this)" class="w-full flex items-center justify-between p-5 text-left hover:bg-white/5 transition-colors"> <span class="font-semibold text-sm">Apa beza beli asing vs bundle?</span> <i data-lucide="chevron-down" style="width:18px;height:18px;color:#9ca3af;transition:transform 0.3s;"></i> </button>
-       <div class="faq-answer px-5 pb-5 hidden">
-        <p class="text-gray-400 text-sm">Beli asing: RM150 total (RM40+RM30+RM30+RM50). Bundle: RM100 sahaja — jimat RM50! Satu password untuk akses SEMUA 4 level seumur hidup.</p>
+      <div class="faq-item rounded-2xl bg-white border border-slate-200 shadow-sm overflow-hidden"><button onclick="toggleFaq(this)" class="w-full flex items-center justify-between p-6 text-left hover:bg-slate-50 transition-colors"> <span class="font-bold text-slate-800">Apa beza beli asing vs bundle?</span> <i data-lucide="chevron-down" style="width:20px;height:20px;color:#94a3b8;transition:transform 0.3s;"></i> </button>
+       <div class="faq-answer px-6 pb-6 hidden">
+        <p class="text-slate-600 font-medium">Beli asing: RM150 total (RM40+RM30+RM30+RM50). Bundle: RM100 sahaja — jimat RM50! Satu password untuk akses SEMUA 4 level seumur hidup.</p>
        </div>
       </div>
-      <div class="faq-item rounded-xl border border-white/10 overflow-hidden"><button onclick="toggleFaq(this)" class="w-full flex items-center justify-between p-5 text-left hover:bg-white/5 transition-colors"> <span class="font-semibold text-sm">Boleh guna kat phone?</span> <i data-lucide="chevron-down" style="width:18px;height:18px;color:#9ca3af;transition:transform 0.3s;"></i> </button>
-       <div class="faq-answer px-5 pb-5 hidden">
-        <p class="text-gray-400 text-sm">Ya! Platform ini fully responsive — boleh guna kat phone, tablet atau laptop. Calculator &amp; ebook semua mobile-friendly.</p>
+      <div class="faq-item rounded-2xl bg-white border border-slate-200 shadow-sm overflow-hidden"><button onclick="toggleFaq(this)" class="w-full flex items-center justify-between p-6 text-left hover:bg-slate-50 transition-colors"> <span class="font-bold text-slate-800">Boleh guna kat phone?</span> <i data-lucide="chevron-down" style="width:20px;height:20px;color:#94a3b8;transition:transform 0.3s;"></i> </button>
+       <div class="faq-answer px-6 pb-6 hidden">
+        <p class="text-slate-600 font-medium">Ya! Platform ini fully responsive — boleh guna kat phone, tablet atau laptop. Calculator &amp; ebook semua direka khas supaya mesra mobile.</p>
        </div>
       </div>
-      <div class="faq-item rounded-xl border border-white/10 overflow-hidden"><button onclick="toggleFaq(this)" class="w-full flex items-center justify-between p-5 text-left hover:bg-white/5 transition-colors"> <span class="font-semibold text-sm">Adakah ini bayaran sekali sahaja?</span> <i data-lucide="chevron-down" style="width:18px;height:18px;color:#9ca3af;transition:transform 0.3s;"></i> </button>
-       <div class="faq-answer px-5 pb-5 hidden">
-        <p class="text-gray-400 text-sm">Ya, bayar sekali dan akses seumur hidup. Tiada yuran bulanan atau hidden charges. Anda juga akan dapat semua update content yang akan datang.</p>
+      <div class="faq-item rounded-2xl bg-white border border-slate-200 shadow-sm overflow-hidden"><button onclick="toggleFaq(this)" class="w-full flex items-center justify-between p-6 text-left hover:bg-slate-50 transition-colors"> <span class="font-bold text-slate-800">Adakah ini bayaran sekali sahaja?</span> <i data-lucide="chevron-down" style="width:20px;height:20px;color:#94a3b8;transition:transform 0.3s;"></i> </button>
+       <div class="faq-answer px-6 pb-6 hidden">
+        <p class="text-slate-600 font-medium">Ya, bayar sekali dan akses seumur hidup. Tiada yuran bulanan atau hidden charges. Anda juga akan dapat semua update content yang akan datang secara percuma.</p>
        </div>
       </div>
      </div>
     </div>
    </section>
-
+ 
    <!-- FINAL CTA -->
-   <section class="w-full scroll-reveal bg-noise" style="background: linear-gradient(180deg, #0a0a0f 0%, #1a1025 50%, #0a0a0f 100%);">
+   <section class="w-full scroll-reveal bg-noise" style="background: linear-gradient(180deg, #e0f2fe 0%, #bae6fd 100%);">
     <div class="relative z-10 max-w-3xl mx-auto px-5 py-16 md:py-24 text-center">
-     <h2 class="font-display text-3xl md:text-5xl font-900 mb-6">Jangan Tunggu Lagi.<br><span class="text-gold-400">Mula Sekarang.</span></h2>
-     <p class="text-gray-400 text-lg mb-8 max-w-xl mx-auto">Setiap hari yang berlalu tanpa plan adalah hari yang rugi. Ambil langkah pertama hari ini.</p><a id="finalCta" href="#" target="_blank" rel="noopener noreferrer" class="btn-glow inline-flex items-center justify-center gap-2 px-10 py-5 bg-gradient-to-r from-gold-500 to-gold-600 text-dark-900 font-bold text-xl rounded-2xl hover:from-gold-400 hover:to-gold-500 transition-all"> <i data-lucide="rocket" style="width:24px;height:24px;"></i> DAPATKAN AKSES LEVEL 1 SEKARANG </a>
-     <div class="flex flex-wrap justify-center gap-6 mt-8 text-sm text-gray-500"><span class="flex items-center gap-1"><i data-lucide="shield-check" style="width:14px;height:14px;"></i> Bayaran Selamat</span> <span class="flex items-center gap-1"><i data-lucide="infinity" style="width:14px;height:14px;"></i> Akses Seumur Hidup</span> <span class="flex items-center gap-1"><i data-lucide="headphones" style="width:14px;height:14px;"></i> Support 24/7</span>
+     <h2 class="font-display text-4xl md:text-5xl font-bold mb-6 text-slate-800">Jangan Tunggu Lagi.<br><span class="text-sky-600">Mula Sekarang.</span></h2>
+     <p class="text-slate-700 text-lg mb-10 max-w-xl mx-auto font-medium">Setiap hari yang berlalu tanpa pelan adalah hari yang rugi. Ambil langkah pertama untuk keluarga anda hari ini.</p>
+     <a id="finalCta" href="#" target="_blank" rel="noopener noreferrer" class="btn-glow inline-flex items-center justify-center gap-2 px-10 py-5 bg-yellow-400 text-slate-900 font-bold text-xl rounded-2xl hover:bg-yellow-300 transition-all shadow-xl border-2 border-yellow-200"> <i data-lucide="rocket" style="width:24px;height:24px;"></i> DAPATKAN AKSES LEVEL 1 SEKARANG </a>
+     <div class="flex flex-wrap justify-center gap-6 mt-10 text-sm font-bold text-slate-600"><span class="flex items-center gap-1"><i data-lucide="shield-check" style="width:16px;height:16px;color:#059669;"></i> Bayaran Selamat</span> <span class="flex items-center gap-1"><i data-lucide="infinity" style="width:16px;height:16px;color:#2563eb;"></i> Akses Seumur Hidup</span> <span class="flex items-center gap-1"><i data-lucide="headphones" style="width:16px;height:16px;color:#db2777;"></i> Support 24/7</span>
      </div>
     </div>
    </section>
-
+ 
    <!-- Footer -->
-   <footer class="w-full bg-dark-900 border-t border-white/5">
+   <footer class="w-full bg-white border-t border-slate-200">
     <div class="max-w-4xl mx-auto px-5 py-8 text-center">
-     <p class="text-gray-600 text-sm">© 2026 HCH Life Mastery Platform. Hak Cipta Terpelihara.</p>
+     <p class="text-slate-500 font-bold text-sm">© 2026 HCH Famili Pintar. Hak Cipta Terpelihara.</p>
     </div>
    </footer>
   </div>
-
+ 
   <script>
-// Config & SDK
+// Config & SDK - Dikemaskini untuk tema cerah
 const defaultConfig = {
   hero_title: 'Kuasai <span class="shimmer-text">Kewangan, Keluarga</span> & Legasi Anda Dalam Satu Platform',
-  hero_subtitle: '26+ calculator & ujian interaktif. 44 ebook eksklusif. 4 level transformasi. Semua dalam genggaman anda — dari hanya <strong class="text-gold-400">RM40</strong>.',
+  hero_subtitle: '26+ calculator & ujian interaktif. 44 ebook eksklusif. 4 level transformasi. Semua dalam genggaman anda — dari hanya <strong class="text-sky-600 font-bold">RM40</strong>.',
   bundle_price: 'RM100',
   bundle_link: 'https://toyyibpay.com/Famili-Pintar',
   access_link: 'https://toyyibpay.com/Famili-Pintar-1',
-  background_color: '#0a0a0f',
-  surface_color: '#12121a',
-  text_color: '#ffffff',
-  accent_color: '#eab308',
-  muted_color: '#9ca3af',
-  font_family: 'DM Sans',
+  background_color: '#f8fafc', /* Slate 50 */
+  surface_color: '#ffffff',   /* White */
+  text_color: '#1e293b',      /* Slate 800 */
+  accent_color: '#0ea5e9',    /* Sky 500 */
+  muted_color: '#64748b',     /* Slate 500 */
+  font_family: 'Nunito',
   font_size: 16
 };
-
+ 
 function applyConfig(config) {
   const c = { ...defaultConfig, ...config };
-
+ 
   document.getElementById('heroTitle').innerHTML = c.hero_title;
   document.getElementById('heroSubtitle').innerHTML = c.hero_subtitle;
-  document.getElementById('bundlePriceHero').textContent = c.bundle_price;
-  document.getElementById('bundlePriceSection').textContent = c.bundle_price;
-
+ 
+document.getElementById('bundlePriceHero').textContent = c.bundle_price;
+ 
+document.getElementById('bundlePriceSection').textContent = c.bundle_price;
+ 
   // Payment links
   const bundleLink = c.bundle_link || '#';
   const accessLink = c.access_link || '#';
   document.getElementById('mainCta').href = bundleLink;
   document.getElementById('bundleCta').href = bundleLink;
   document.getElementById('finalCta').href = accessLink;
-
+ 
   // Colors
   document.body.querySelector('#app').style.color = c.text_color;
-
+ 
   // Font
   const font = c.font_family || defaultConfig.font_family;
   document.querySelectorAll('.font-body, p, span, a, button, div').forEach(el => {
@@ -683,12 +611,12 @@ function applyConfig(config) {
       el.style.fontFamily = `${font}, sans-serif`;
     }
   });
-
+ 
   // Font size
   const base = c.font_size || defaultConfig.font_size;
   document.body.style.fontSize = base + 'px';
 }
-
+ 
 if (window.elementSdk) {
   window.elementSdk.init({
     defaultConfig,
@@ -723,7 +651,7 @@ if (window.elementSdk) {
   // Fallback jika elemen SDK tidak dapat dimuat naik
   applyConfig(defaultConfig);
 }
-
+ 
 // FAQ toggle
 function toggleFaq(btn) {
   const answer = btn.nextElementSibling;
@@ -737,7 +665,7 @@ function toggleFaq(btn) {
     if (icon) icon.style.transform = 'rotate(180deg)';
   }
 }
-
+ 
 // Counter animation
 function animateCounters() {
   document.querySelectorAll('.counter').forEach(el => {
@@ -751,16 +679,23 @@ function animateCounters() {
     }, 50);
   });
 }
-
+ 
 // Scroll reveal
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
 }, { threshold: 0.1 });
 document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
-
+ 
 // Init
 animateCounters();
-lucide.createIcons();
+if (typeof lucide !== 'undefined') {
+  lucide.createIcons();
+} else {
+  // Retry once after DOM loads if script was deferred
+  window.addEventListener('DOMContentLoaded', () => {
+    if (typeof lucide !== 'undefined') lucide.createIcons();
+  });
+}
 </script>
 </body>
 </html>
